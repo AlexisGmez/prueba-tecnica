@@ -12,7 +12,10 @@ const App = () => {
   const addMoveable = () => {
     // Create a new moveable component and add it to the array
     const COLORS = ["red", "blue", "yellow", "green", "purple"];
-    getPhotosFromApi()
+    getPhotosFromApi();
+
+    console.log(photos)
+
     setMoveableComponents([
       ...moveableComponents,
       {
@@ -22,8 +25,9 @@ const App = () => {
         width: 100,
         height: 100,
         color: COLORS[Math.floor(Math.random() * COLORS.length)],
-        updateEnd: true
-      },
+        image:photos[cont]?.url,
+        updateEnd: true,
+      }
     ]);
     setCont(cont+1);
   };
@@ -104,7 +108,6 @@ const App = () => {
             handleResizeStart={handleResizeStart}
             setSelected={setSelected}
             isSelected={selected === item.id}
-            photos={photos}
             removeComponents={removeComponents}
             cont={cont}
           />

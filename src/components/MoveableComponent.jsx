@@ -1,4 +1,4 @@
-import { useRef,useState } from "react";
+import { useMemo, useRef,useState } from "react";
 import Moveable from "react-moveable";
 export const Component = ({
     updateMoveable,
@@ -12,11 +12,10 @@ export const Component = ({
     setSelected,
     isSelected = false,
     updateEnd,
-    photos,
-    cont,
+    image,
     removeComponents
   }) => {
-
+    
     const ref = useRef();
     const [frame, setFrame] = useState({
         translate: [0,0],
@@ -30,7 +29,9 @@ export const Component = ({
       color,
       id,
     });
-  
+    
+    
+    console.log(image)
     let parent = document.getElementById("parent");
     let parentBounds = parent.getBoundingClientRect();
     
@@ -59,9 +60,9 @@ export const Component = ({
             left: left,
             width: width,
             height: height,
-            // backgroundImage: `url(${photos[cont]?.url})`,
-            backgroundColor:color,
-            // backgroundSize:'100%',
+            backgroundImage: `url("${image}")`,
+            // backgroundColor:color,
+            backgroundSize:'100%',
           }}
           onClick={() => setSelected(id)}
           onDoubleClick={()=>removeComponents(id)}
@@ -78,6 +79,7 @@ export const Component = ({
               width,
               height,
               color,
+              image
             });
           }}
           onResizeStart={onResizeStart}
